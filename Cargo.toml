@@ -1,0 +1,25 @@
+[package]
+name = "lcso"
+version = "0.0.1"
+authors = ["Jack Gindi <Jack.Gindi@blackrock.com>", "Nicholas Moehle <Nicholas.Moehle@blackrock.com>"]
+edition = "2018"
+
+[lib]
+name = "lcso"
+path = "src/lib.rs"
+crate-type = ["cdylib", "lib"]
+
+[dependencies]
+sprs = "0.7"
+suitesparse_ldl_sys = { version = "0.3", features = ["static"] }
+sprs_suitesparse_ldl = "0.3"
+ndarray = { version = "0.13", features = ["approx"] }
+ndarray-rand = "0.11"
+sprs-rand = "0.2"
+rand = "0.7"
+rand_core = "0.6"
+num = "0.2"
+approx = "0.3"
+len-trait = "0.6"
+libmath = "0.2"
+chrono = "0.4"
