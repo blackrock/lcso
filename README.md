@@ -49,7 +49,7 @@ src
 ```
 
 ## Getting started
-To clone the repo, run `git clone XXX(REPLACE WITH GITHUB URL)`.
+To clone the repo, run `git clone https://github.com/blackrock/lcso.git`.
 
 ## Install
 First make sure you have [`Rust>=1.44.1`](https://www.rust-lang.org/tools/install) installed in your environment
@@ -106,7 +106,7 @@ To run tests, in the root directory of the project, run `cargo test`.
 To run the example, run `cargo run --example small_example`. To see the example source code, see `examples/small_example.rs`.
 
 ## Disclaimer
-This code was used to produce results in the paper linked [here](XXX). We will
+This code was used to produce results in the paper linked [here](https://arxiv.org/abs/2103.05455). We will
 accept contributions and improvements, but updates and new versions may be
 few and far between. At this time, the code is not intended to be relied upon 
 in a production setting.
