@@ -1,8 +1,8 @@
 # LCSO (Linearly Constrained Separable Optimization)
 
 ## Authors
-The original algorithms here were developed by [Nicholas Moehle](@moehle), and this project was
-authored by [Jack Gindi](@gindij).
+The original algorithms here were developed by [Nicholas Moehle](https://github.com/moehle), and this project was
+authored by [Jack Gindi](https://github.com/gindij).
 
 ## Introduction
 This library contains a Rust implementation of the [alternating-direction
