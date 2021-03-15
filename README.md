@@ -2,7 +2,7 @@
 
 ## Authors
 The original algorithms here were developed by [Nicholas Moehle](https://github.com/moehle), and this project was
-authored by [Jack Gindi](https://github.com/gindij).
+authored by [Jack Gindi](https://github.com/gindij). See [our medium post](https://medium.com/blackrock-engineering/writing-an-optimization-library-in-rust-588628c0e500) for a discussion of the design choices behind the project.
 
 ## Introduction
 This library contains a Rust implementation of the [alternating-direction
