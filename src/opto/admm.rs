@@ -129,7 +129,7 @@ fn step<U: Prox + ?Sized>(
         problem_data,
         &settings.rho,
         &settings.sigma,
-        &ldl,
+        ldl,
     );
     // get the next x value by using the proximal operators of the separable function pieces
     let prox_arg = settings.alpha * &next_xt
@@ -213,7 +213,7 @@ pub fn optimize_structs<T: Objective + Residual>(
             problem_data.g[i] = envelope(&g_orig[i]);
         }
         // get the right prox cache
-        let mut prox_cache = UnconstrainedProxCache::new(&problem_data, &settings);
+        let mut prox_cache = UnconstrainedProxCache::new(problem_data, settings);
         // solve the relaxed version
         let sol = _optimize(
             &ldl,
@@ -239,7 +239,7 @@ pub fn optimize_structs<T: Objective + Residual>(
 
     // clear termination cache, create new prox cache, and solve again
     term_cache.clear();
-    let mut prox_cache = UnconstrainedProxCache::new(&problem_data, settings);
+    let mut prox_cache = UnconstrainedProxCache::new(problem_data, settings);
     let sol = _optimize(
         &ldl,
         &mut prox_cache,
@@ -253,10 +253,10 @@ pub fn optimize_structs<T: Objective + Residual>(
     stats.solve_time_ms = (Utc::now() - begin_solve).num_milliseconds() as usize;
     stats
         .objective
-        .push(obj_res_calc.objective(&sol, &problem_data));
+        .push(obj_res_calc.objective(&sol, problem_data));
     stats
         .residual
-        .push(obj_res_calc.residual(&sol, &problem_data));
+        .push(obj_res_calc.residual(&sol, problem_data));
     (sol, stats)
 }
 
@@ -270,13 +270,12 @@ pub fn optimize<T: Objective + Residual>(
     q: Array1<f64>,
     g: Array1<PiecewiseQuadratic>,
     o: &T,
+    s: &Settings,
     convexify: bool,
 ) -> (Variables, Stats) {
-    let (m, n) = A.shape();
-    let settings = Settings::defaults(n, m);
     let mut problem_data = ProblemData::new(P, q, A, b, g);
     let mut variables = Variables::from_problem_data(&problem_data);
-    optimize_structs(&settings, &mut problem_data, &mut variables, o, convexify)
+    optimize_structs(s, &mut problem_data, &mut variables, o, convexify)
 }
 
 #[cfg(test)]

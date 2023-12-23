@@ -93,8 +93,8 @@ impl TermCache {
     ) -> bool {
         // We only want to check for convergence every so often
         if iter % settings.term_cond_freq == 0 {
-            let objective = obj_res_calc.objective(&vars, &params);
-            let res = obj_res_calc.residual(&vars, &params);
+            let objective = obj_res_calc.objective(vars, params);
+            let res = obj_res_calc.residual(vars, params);
             // in order to have "improved", the objective value must decrease, the linear and non
             // linear residuals must be sufficiently small
             let has_improved =

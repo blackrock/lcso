@@ -331,10 +331,7 @@ fn envelope_bq_bq(
         return intersection_at_right;
     }
 
-    panic!(format!(
-        "One of the above should have returned! Could not construct envelope under:\n{}\n{}",
-        of, og
-    ));
+    panic!("One of the above should have returned! Could not construct envelope under:\n{}\n{}", of, og);
 }
 
 /// Constructs the envelope of a convex `PiecewiseQuadratic` `f_pwq` and a `BoundedQuadratic`

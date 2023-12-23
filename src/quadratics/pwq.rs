@@ -42,20 +42,20 @@ pub struct SyncWorkspace {
 
 impl SyncWorkspace {
     pub fn new(capacity: usize) -> SyncWorkspace {
-        let mut active_functions = Vec::<BoundedQuadratic>::with_capacity(capacity);
-        unsafe { active_functions.set_len(capacity) }
+        let active_functions = Vec::<BoundedQuadratic>::with_capacity(capacity);
+        //unsafe { active_functions.set_len(capacity) }
 
-        let mut active_piece_idx = Vec::<usize>::with_capacity(capacity);
-        unsafe { active_piece_idx.set_len(capacity) }
+        let active_piece_idx = Vec::<usize>::with_capacity(capacity);
+        //unsafe { active_piece_idx.set_len(capacity) }
 
-        let mut pwq_is_active = Vec::<bool>::with_capacity(capacity);
-        unsafe { pwq_is_active.set_len(capacity) }
+        let pwq_is_active = Vec::<bool>::with_capacity(capacity);
+        //unsafe { pwq_is_active.set_len(capacity) }
 
-        let mut uppers = Vec::<f64>::with_capacity(capacity);
-        unsafe { uppers.set_len(capacity) }
+        let uppers = Vec::<f64>::with_capacity(capacity);
+        //unsafe { uppers.set_len(capacity) }
 
-        let mut incr_pwq = Vec::<bool>::with_capacity(capacity);
-        unsafe { incr_pwq.set_len(capacity) }
+        let incr_pwq = Vec::<bool>::with_capacity(capacity);
+        //unsafe { incr_pwq.set_len(capacity) }
 
         SyncWorkspace {
             active_functions,
@@ -555,8 +555,8 @@ impl PiecewiseQuadratic {
     fn identify_functions_to_update(
         bqs: &[BoundedQuadratic],
         active: &[bool],
-        uppers: &mut Vec<f64>,
-        update: &mut Vec<bool>,
+        uppers: &mut [f64],
+        update: &mut [bool],
     ) {
         // Find the minimum upper bound (updating the upper bounds and their closedness along the way)
         let mut min_ub = f64::INFINITY;

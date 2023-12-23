@@ -648,12 +648,12 @@ impl fmt::Display for BoundedQuadratic {
             "".to_string()
         } else {
             let sign = if utils::lt_ep(self.b, 0.) { "-" } else { "" };
-            let sign = if sign == "" && quad_term != "" {
+            let sign = if sign.is_empty() && !quad_term.is_empty() {
                 "+"
             } else {
                 sign
             };
-            let sep = if quad_term == "" { "" } else { " " };
+            let sep = if quad_term.is_empty() { "" } else { " " };
             if relative_eq!(self.b.abs(), 1., epsilon = f64::EPSILON) {
                 format!("{}{}x ", sign, sep)
             } else {
@@ -664,12 +664,12 @@ impl fmt::Display for BoundedQuadratic {
             "".to_string()
         } else {
             let sign = if utils::lt_ep(self.c, 0.) { "-" } else { "" };
-            let sign = if sign == "" && (quad_term != "" || lin_term != "") {
+            let sign = if sign.is_empty() && (!quad_term.is_empty() || !lin_term.is_empty()) {
                 "+"
             } else {
                 sign
             };
-            let sep = if quad_term == "" && lin_term == "" {
+            let sep = if quad_term.is_empty() && lin_term.is_empty() {
                 ""
             } else {
                 " "
@@ -677,7 +677,7 @@ impl fmt::Display for BoundedQuadratic {
             format!("{}{}{}", sign, sep, self.c.abs())
         };
         let func_expr = quad_term + &lin_term + &const_term;
-        let func_expr = if func_expr == "" {
+        let func_expr = if func_expr.is_empty() {
             "0".to_string()
         } else {
             func_expr
@@ -704,7 +704,7 @@ impl PartialEq for BoundedQuadratic {
                 epsilon = f64::EPSILON
             )
         } else {
-            self.approx(&other)
+            self.approx(other)
         }
     }
 }
